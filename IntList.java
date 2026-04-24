@@ -28,7 +28,14 @@ public class IntList {
         return temp.data;
     }
 
-    // Метод разворота списка (требуется в задании Section 2.2)
+    public int removeFirst() {
+        if (head == null) throw new java.util.NoSuchElementException();
+        int data = head.data;
+        head = head.next;
+        size--;
+        return data;
+    }
+
     public void reverse() {
         Node prev = null;
         Node current = head;
@@ -55,12 +62,19 @@ public class IntList {
     }
 
     public static void main(String[] args) {
+        // Тест Списка
         IntList list = new IntList();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        System.out.println("Original: " + list);
+        list.add(1); list.add(2); list.add(3);
+        System.out.println("Original list: " + list);
         list.reverse();
-        System.out.println("Reversed: " + list);
+        System.out.println("Reversed list: " + list);
+
+        // Тест Кучи (Heap)
+        System.out.println("\n--- Testing MinHeap ---");
+        MinHeap heap = new MinHeap();
+        heap.insert(10);
+        heap.insert(5);
+        heap.insert(20);
+        System.out.println("Min from heap (should be 5): " + heap.extractMin());
     }
 }
